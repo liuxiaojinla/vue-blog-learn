@@ -7,12 +7,12 @@ import App from "./App";
 import router from "./router";
 import iView from "iview";
 import "iview/dist/styles/iview.css";
+import "./scss/app.scss";
 
 Vue.use(iView);
 Vue.config.productionTip = false;
 global.$api = api;
 
-/* eslint-disable no-new */
 new Vue({
 	el: '#app',
 	router,
