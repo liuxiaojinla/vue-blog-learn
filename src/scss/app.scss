@@ -12,6 +12,22 @@ body {
   vertical-align: middle;
 }
 
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
 .layout {
   position: relative;
   .layout-header {
@@ -81,6 +97,3 @@ body {
 	color: #9ea7b4;
   }
 }
-
-
-
