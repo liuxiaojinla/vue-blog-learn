@@ -1,23 +1,24 @@
 <template>
 	<section class="article-list">
-		<h1>文章列表</h1>
+		<h1 class="article-title">文章列表</h1>
 		<article class="article-item" v-for="item in data">
 			<header>
 				<img :src="item.author.avatar_url"/>
+				<span class="top" v-if="item.top"></span>
 				<router-link :to="'detail?id='+item.id">
-					<h2>{{item.title}}</h2>
+					<h1>{{item.title}}</h1>
 				</router-link>
-				<h6>{{item.author.loginname}}</h6>
+				<h3>{{item.author.loginname}}</h3>
 			</header>
 
 			<section></section>
 			<footer>
 				<Row>
-					<Col span="16" class="time">
-
+					<Col span="6">
+					<Icon type="chatbox-working" v-text="' '+item.reply_count"></Icon>
 					</Col>
-					<Col span="8" push="16" class="time">
-					最后回复时间：
+
+					<Col span="18" class="time">
 					<time :datetime="item.last_reply_at">{{item.last_reply_at}}</time>
 					</Col>
 				</Row>
@@ -54,7 +55,9 @@
 <style lang="scss" scoped>
 	.article-list {
 		position: relative;
-
+		.article-title {
+			padding: 15px 10px;
+		}
 		.article-item {
 			position: relative;
 			padding: 15px 10px;
@@ -63,14 +66,36 @@
 			user-select: none;
 			> header {
 				img:first-child {
-					width: 32px;
-					height: 32px;
+					width: 48px;
+					height: 48px;
 					float: left;
 					margin-right: 15px;
 					border-radius: 50%;
+					border: 1px solid #ddd;
+				}
+				h1 {
+					font-size: 20px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				.top {
+					display: inline-block;
+					float: right;
+					&:after {
+						content: '置顶';
+						padding: 3px 10px;
+						border-radius: 15px;
+						background-color: #ed3f14;
+						color: white;
+						font-size: 10px;
+					}
 				}
 			}
 			> footer {
+				.ivu-col {
+					padding-left: 8px;
+				}
 				.time {
 					text-align: right;
 				}
@@ -83,7 +108,7 @@
 				background-color: #e0e0e0;
 			}
 
-			&::after {
+			&:after {
 				content: '';
 				position: absolute;
 				bottom: 0;
