@@ -4,22 +4,6 @@
   "description": "vue2.0学习",
   "author": "lxsea <1540175452@qq.com>",
   "private": true,
-  "main": "http://localhost:8080",
-  "window": {
-	"title": "nw-vue-webpack2",
-	"toolbar": true,
-	"frame": true,
-	"width": 1200,
-	"height": 800,
-	"min_width": 800,
-	"min_height": 500
-  },
-  "webkit": {
-	"plugin": true
-  },
-  "nodejs": true,
-  "js-flags": "--harmony",
-  "node-remote": "http://localhost",
   "scripts": {
 	"dev": "node build/dev-server.js",
 	"start": "node build/dev-server.js",

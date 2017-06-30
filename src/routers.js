@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import SubRoute from "@/SubRoute";
+import SubRoute from "@/components/SubRoute";
 import index from "@/pages/index";
 import detail from "@/pages/detail";
 import userIndex from "@/pages/user/index";

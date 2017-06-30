@@ -1,9 +1,29 @@
 <template>
-	<div class="index">
-		<ul class="list">
-			<li v-for="item in data" v-text="item.title" @click="onDetail(item.id)"></li>
-		</ul>
-	</div>
+	<section class="article-list">
+		<h1>文章列表</h1>
+		<article class="article-item" v-for="item in data">
+			<header>
+				<img :src="item.author.avatar_url"/>
+				<router-link :to="'detail?id='+item.id">
+					<h2>{{item.title}}</h2>
+				</router-link>
+				<h6>{{item.author.loginname}}</h6>
+			</header>
+
+			<section></section>
+			<footer>
+				<Row>
+					<Col span="16" class="time">
+
+					</Col>
+					<Col span="8" push="16" class="time">
+					最后回复时间：
+					<time :datetime="item.last_reply_at">{{item.last_reply_at}}</time>
+					</Col>
+				</Row>
+			</footer>
+		</article>
+	</section>
 </template>
 
 <script>
@@ -15,11 +35,11 @@
 			}
 		},
 		created(){
-//			this.loadData();
+			this.loadData();
 		},
 		methods: {
 			loadData(){
-				$api.get('topics', (data) => {
+				$request.get('topics', (data) => {
 					this.data = data;
 				});
 			},
@@ -32,33 +52,47 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-	.index {
-		.list {
-			list-style: none;
-			padding: 0;
-			> li {
-				position: relative;
-				padding: 15px 10px;
-				cursor: pointer;
-				-webkit-user-select: none;
-				user-select: none;
-				&:hover {
-					background-color: #f0f0f0;
+	.article-list {
+		position: relative;
+
+		.article-item {
+			position: relative;
+			padding: 15px 10px;
+			cursor: pointer;
+			-webkit-user-select: none;
+			user-select: none;
+			> header {
+				img:first-child {
+					width: 32px;
+					height: 32px;
+					float: left;
+					margin-right: 15px;
+					border-radius: 50%;
 				}
-				&:active {
-					background-color: #e0e0e0;
+			}
+			> footer {
+				.time {
+					text-align: right;
 				}
-				&::after {
-					content: '';
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					right: 0;
-					background-color: #ddd;
-					height: 1px;
-					-webkit-transform: scaleY(0.4);
-					transform: scaleY(0.4);
-				}
+			}
+
+			&:hover {
+				background-color: #f0f0f0;
+			}
+			&:active {
+				background-color: #e0e0e0;
+			}
+
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: #e9eaec;
+				height: 1px;
+				-webkit-transform: scaleY(0.3);
+				transform: scaleY(0.3);
 			}
 		}
 	}

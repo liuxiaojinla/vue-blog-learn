@@ -4,24 +4,20 @@
 			<div class="layout-logo"></div>
 			<div class="layout-nav">
 				<Menu-item name="1">
-					<Icon type="ios-navigate"></Icon>
-					导航一
+					<Icon type="ios-navigate"></Icon>导航一
 				</Menu-item>
 				<Menu-item name="2">
-					<Icon type="ios-keypad"></Icon>
-					导航二
+					<Icon type="ios-keypad"></Icon>导航二
 				</Menu-item>
 				<Menu-item name="3">
-					<Icon type="ios-analytics"></Icon>
-					导航三
+					<Icon type="ios-analytics"></Icon>导航三
 				</Menu-item>
 				<Menu-item name="4">
-					<Icon type="ios-paper"></Icon>
-					导航四
+					<Icon type="ios-paper"></Icon>导航四
 				</Menu-item>
 			</div>
 		</Menu>
-		<div class="layout-content">
+		<div class="layout-content wrapper-content">
 			<router-view keep-alive transition transition-mode="out-in"></router-view>
 		</div>
 		<div class="layout-copy">
