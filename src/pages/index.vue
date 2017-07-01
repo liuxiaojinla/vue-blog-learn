@@ -1,5 +1,5 @@
 <template>
-	<section class="article-list">
+	<section class="article-list" v-if="isLoaded">
 		<h1 class="article-title">文章列表</h1>
 		<article class="article-item" v-for="item in data">
 			<header>
@@ -10,7 +10,6 @@
 				</router-link>
 				<h3>{{item.author.loginname}}</h3>
 			</header>
-
 			<section></section>
 			<footer>
 				<Row>
@@ -24,7 +23,15 @@
 				</Row>
 			</footer>
 		</article>
+		<div class="article-pager">
+			<template v-if="hasMore">
+				<Spin size="large" fix v-if="isLoading"></Spin>
+				<Button type="info" long v-else @click="loadData(page+1)">下一页</Button>
+			</template>
+			<p class="text-center" v-else>没有更多了</p>
+		</div>
 	</section>
+	<Spin size="large" fix v-else></Spin>
 </template>
 
 <script>
@@ -32,21 +39,30 @@
 		name: "index",
 		data(){
 			return {
-				data: null
+				isLoading: false,
+				data: [],
+				page: 1,
+				isLoaded: false,
+				hasMore: true,
 			}
 		},
 		created(){
 			this.loadData();
 		},
 		methods: {
-			loadData(){
-				$request.get('topics', (data) => {
-					this.data = data;
+			loadData(page){
+				this.isLoading = true;
+				$request.get('topics?page=' + page, (data) => {
+					if (!this.isLoaded) this.isLoaded = true;
+					this.isLoading = false;
+					this.page = page;
+					this.data = page === 1 ? data : this.data.concat(data);
+					this.hasMore = data.length < 40;
 				});
 			},
-			onDetail(id){
-				this.$router.push({path: 'detail', query: {id: id}});
-			}
+//			onDetail(id){
+//				this.$router.push({path: 'detail', query: {id: id}});
+//			}
 		}
 	}
 </script>
@@ -118,6 +134,16 @@
 				height: 1px;
 				-webkit-transform: scaleY(0.3);
 				transform: scaleY(0.3);
+			}
+		}
+
+		.article-pager {
+			position: relative;
+			padding: 10px;
+			height: 52px;
+			p {
+				line-height: 1.5;
+				padding: 3px 5px;
 			}
 		}
 	}
