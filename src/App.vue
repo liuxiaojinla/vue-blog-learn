@@ -11,7 +11,7 @@
 			<router-view keep-alive transition transition-mode="out-in"></router-view>
 		</div>
 		<div class="layout-copy">
-			2011-2016 &copy; TalkingData
+			2017 &copy; TalkingData
 		</div>
 	</div>
 </template>

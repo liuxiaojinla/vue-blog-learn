@@ -9,13 +9,14 @@ import userInfo from "@/pages/user/info";
 import userLove from "@/pages/user/love";
 
 Vue.use(Router);
-
-export default new Router({
+const router = new Router({
 	routes: [{
 		path: '/',
+		meta:{title: '首页',},
 		component: index
 	}, {
 		path: '/detail',
+		meta:{title: '信息详情',},
 		component: detail
 	}, {
 		path: '/user',
@@ -27,3 +28,11 @@ export default new Router({
 		]
 	}]
 });
+
+router.afterEach(function (route) {
+	if (route.meta.title) {
+		document.title = route.meta.title;
+	}
+});
+
+export default router;

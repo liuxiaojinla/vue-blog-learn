@@ -13,6 +13,7 @@
 			</Row>
 		</footer>
 		<section class="replies">
+			<h2>评论</h2>
 			<article v-for="item in info.replies">
 				<header>
 					<img :src="item.author.avatar_url"/>
@@ -52,6 +53,7 @@
 		created(){
 			const id = this.$route.query.id;
 			$request.get('topic/' + id, (info) => {
+				setTitle(info.title + " - 详情");
 				const replies = info.replies;
 				replies.forEach(function (item, index) {
 					if (item.reply_id !== null) {
@@ -109,11 +111,9 @@
 			padding-top: 15px;
 			padding-bottom: 5px;
 		}
-
 		.replies {
 			article {
 				position: relative;
-
 				header {
 					padding-top: 8px;
 					padding-bottom: 8px;
@@ -145,11 +145,10 @@
 						max-width: 100% !important;
 					}
 				}
-
 				&:after {
 					content: '';
 					position: absolute;
-					background-color: #1c2438;
+					background-color: #ddd;
 					left: 0;
 					right: 0;
 					bottom: 0;
@@ -163,6 +162,9 @@
 				}
 
 			}
+		}
+		.replies .replies {
+			padding-left: 25px;
 		}
 	}
 </style>

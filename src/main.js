@@ -10,6 +10,9 @@ import router from "./routers";
 import "./scss/app.scss";
 
 global.$request = request;
+global.setTitle = function (title) {
+	document.title = title;
+};
 
 Vue.use(iView);
 Vue.config.productionTip = false;
