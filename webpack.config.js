@@ -39,6 +39,7 @@ module.exports = {
 				NODE_ENV: '"production"'
 			}
 		}),
+		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false

@@ -57,7 +57,7 @@
 					this.isLoading = false;
 					this.page = page;
 					this.data = page === 1 ? data : this.data.concat(data);
-					this.hasMore = data.length < 40;
+					this.hasMore = data.length >= 40;
 				});
 			},
 //			onDetail(id){
